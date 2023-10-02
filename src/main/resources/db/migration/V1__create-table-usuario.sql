@@ -1,0 +1,7 @@
+create table usuario(
+    id serial not null primary key,
+    login varchar(100) not null ,
+    senha varchar(100) not null ,
+    permissao varchar(20)
+
+);

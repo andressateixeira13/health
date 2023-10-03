@@ -1,8 +1,11 @@
 package com.example.health.model.paciente;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
+
+import java.util.Date;
 
 @Entity
 @Table(name = "paciente")
@@ -15,10 +18,16 @@ public class Paciente {
     private Long id;
     @NotBlank
     private String nome;
-    @Data
-    private Data dataNasc;
-
-
+    @Temporal(TemporalType.DATE)
+    private Date dataNasc;
+    @Embedded
     @JoinColumn(name = "idGenero")
-    private int gerero;
+    private Genero gerero;
+    @Embedded
+    @JoinColumn(name = "idEnd")
+    private Endereco endereco;
+    @Email(message = "Email inválido")
+    private String email;
+
+
 }

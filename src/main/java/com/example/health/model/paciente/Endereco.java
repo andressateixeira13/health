@@ -1,6 +1,7 @@
 package com.example.health.model.paciente;
 
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -10,6 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Embeddable
+@Table(name = "endereco")
 @Getter
 @Setter
 @NoArgsConstructor

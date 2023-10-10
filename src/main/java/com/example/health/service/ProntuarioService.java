@@ -34,8 +34,8 @@ public class ProntuarioService {
 
         if (prontuarioExistente.isPresent()) {
             Prontuario prontuario = prontuarioExistente.get();
-            prontuario.setIdPac(prontuarioAtualizado.getIdPac());
-            prontuario.setIdMed(prontuarioAtualizado.getIdMed());
+            prontuario.setIdpac(prontuarioAtualizado.getIdpac());
+            prontuario.setIdmed(prontuarioAtualizado.getIdmed());
             prontuario.setLimitacoes(prontuarioAtualizado.getLimitacoes());
             prontuario.setAlergias(prontuarioAtualizado.getAlergias());
 

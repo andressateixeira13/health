@@ -30,7 +30,7 @@ public class ConsultaService {
     e faz um update
     * */
     public void atualizar(Consulta consulta){
-        Consulta c = this.repository.getReferenceById(consulta.getId());
+        Consulta c = this.repository.getReferenceById(consulta.getIdcon());
         c.setPaciente(consulta.getPaciente());
         /*c.getDiagnostico(consulta.getDiagnostico());
         c.getDataCon(consulta.getDataCon());

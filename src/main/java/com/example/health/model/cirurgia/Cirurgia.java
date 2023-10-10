@@ -14,14 +14,14 @@ import lombok.*;
 public class Cirurgia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idCirurgia")
-    private Long id;
+    @Column(name = "idcirurgia")
+    private Long idcirurgia;
 
-    @Column(name = "idPac")
-    private Integer idPac;
+    @Column(name = "idpac")
+    private Integer idpac;
 
-    @Column(name = "idMed")
-    private Integer idMed;
+    @Column(name = "idmed")
+    private Integer idmed;
 
     @Column(name = "nome", nullable = false)
     @NotBlank
@@ -31,5 +31,5 @@ public class Cirurgia {
     @NotBlank
     private String descricao;
 
-    // Outras anotações, getters e setters
+
 }

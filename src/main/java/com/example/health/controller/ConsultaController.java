@@ -37,7 +37,7 @@ public class ConsultaController {
 
         this.service.salvar(consulta);
         //monta a URI da aplicação dinamicamente
-        URI uri = uriBuilder.path("/consulta/{id}").buildAndExpand(consulta.getId()).toUri();
+        URI uri = uriBuilder.path("/consulta/{id}").buildAndExpand(consulta.getIdcon()).toUri();
         //created(uri) irá colocar no cabeçalho da requisição da resposta
         // o parâmetro Location com a URI de acesso ao recurso criado
         return ResponseEntity.created(uri).body(consulta);

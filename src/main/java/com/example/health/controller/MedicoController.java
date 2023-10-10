@@ -31,14 +31,14 @@ public class MedicoController {
     }
 
     @PostMapping("/")
-    /*public ResponseEntity<Medico> salvarMedico(@RequestBody @Valid Medico medico) {
+    public ResponseEntity<Medico> salvarMedico(@RequestBody @Valid Medico medico) {
         Medico savedMedico = medicoService.salvarMedico(medico);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(savedMedico.getId())
+                .buildAndExpand(savedMedico.getIdmed())
                 .toUri();
         return ResponseEntity.created(uri).body(savedMedico);
-    }*/
+    }
 
     @PutMapping("/{id}")
     public ResponseEntity atualizarMedico(@RequestBody Medico medico) {

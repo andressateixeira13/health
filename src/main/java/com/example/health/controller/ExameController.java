@@ -44,7 +44,7 @@ public class ExameController {
         Exame savedExame = exameService.salvarExame(exame);
 
         if (savedExame != null) {
-            URI uri = uriBuilder.path("/exames/{id}").buildAndExpand(savedExame.getId()).toUri();
+            URI uri = uriBuilder.path("/exames/{id}").buildAndExpand(savedExame.getIdexame()).toUri();
             return ResponseEntity.created(uri).body(savedExame);
         } else {
             return ResponseEntity.badRequest().build();

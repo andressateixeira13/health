@@ -34,7 +34,7 @@ public class EnfermagemService {
         if (enfermagemExistente.isPresent()) {
             Enfermagem enfermagem = enfermagemExistente.get();
             enfermagem.setNome(enfermagemAtualizada.getNome());
-            enfermagem.setDataNasc(enfermagemAtualizada.getDataNasc());
+            enfermagem.setDatanasc(enfermagemAtualizada.getDatanasc());
             enfermagem.setCargo(enfermagemAtualizada.getCargo());
             enfermagem.setCoren(enfermagemAtualizada.getCoren());
 

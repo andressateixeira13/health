@@ -45,7 +45,7 @@ public class EnfermagemController {
         Enfermagem savedEnfermagem = enfermagemService.salvarEnfermagem(enfermagem);
 
         if (savedEnfermagem != null) {
-            URI uri = uriBuilder.path("/enfermagem/{id}").buildAndExpand(savedEnfermagem.getId()).toUri();
+            URI uri = uriBuilder.path("/enfermagem/{id}").buildAndExpand(savedEnfermagem.getIdenf()).toUri();
             return ResponseEntity.created(uri).body(savedEnfermagem);
         } else {
             return ResponseEntity.badRequest().build();

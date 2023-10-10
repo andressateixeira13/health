@@ -25,7 +25,7 @@ public class PacienteController {
     @Transactional
     public ResponseEntity salvar(@RequestBody @Valid Paciente paciente, UriComponentsBuilder uriBuilder){
         this.service.salvar(paciente);
-        URI uri = uriBuilder.path("/paciente/{id}").buildAndExpand(paciente.getId()).toUri();
+        URI uri = uriBuilder.path("/paciente/{id}").buildAndExpand(paciente.getIdpac()).toUri();
         return ResponseEntity.created(uri).body(paciente);
     }
 

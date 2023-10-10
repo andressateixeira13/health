@@ -29,6 +29,7 @@ public class AutenticacaoController {
 
             User user = (User) at.getPrincipal();
             String token = this.tokenServiceJWT.gerarToken(user);
+            System.out.println(token);
 
             return ResponseEntity.ok().body(new DadosTokenJWT(token));
         }catch (Exception e){

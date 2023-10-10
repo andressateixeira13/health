@@ -14,11 +14,11 @@ import lombok.*;
 public class Exame {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idExame")
-    private Long id;
+    @Column(name = "idexame")
+    private Long idexame;
 
-    @JoinColumn(name = "idPac")
-    private Integer idPac;
+    @JoinColumn(name = "idpac")
+    private Integer idpac;
 
     @NotBlank
     private String nome;

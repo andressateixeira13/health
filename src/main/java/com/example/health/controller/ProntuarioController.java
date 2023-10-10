@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/prontuarios")
+@RequestMapping("/prontuario")
 public class ProntuarioController {
     private final ProntuarioService prontuarioService;
 
@@ -44,7 +44,7 @@ public class ProntuarioController {
         Prontuario savedProntuario = prontuarioService.salvarProntuario(prontuario);
 
         if (savedProntuario != null) {
-            URI uri = uriBuilder.path("/prontuarios/{id}").buildAndExpand(savedProntuario.getId()).toUri();
+            URI uri = uriBuilder.path("/prontuario/{id}").buildAndExpand(savedProntuario.getIdpront()).toUri();
             return ResponseEntity.created(uri).body(savedProntuario);
         } else {
             return ResponseEntity.badRequest().build();

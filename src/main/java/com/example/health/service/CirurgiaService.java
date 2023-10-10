@@ -33,8 +33,8 @@ public class CirurgiaService {
 
         if (cirurgiaExistente.isPresent()) {
             Cirurgia cirurgia = cirurgiaExistente.get();
-            cirurgia.setIdPac(cirurgiaAtualizada.getIdPac());
-            cirurgia.setIdMed(cirurgiaAtualizada.getIdMed());
+            cirurgia.setIdpac(cirurgiaAtualizada.getIdpac());
+            cirurgia.setIdmed(cirurgiaAtualizada.getIdmed());
             cirurgia.setNome(cirurgiaAtualizada.getNome());
             cirurgia.setDescricao(cirurgiaAtualizada.getDescricao());
 

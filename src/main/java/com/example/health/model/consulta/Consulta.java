@@ -19,9 +19,9 @@ import java.util.Date;
 @AllArgsConstructor
 public class Consulta {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idcon;
     @ManyToOne
-    @JoinColumn(name = "idPac")
+    @JoinColumn(name = "idpac")
     private Paciente paciente;
     @Temporal(TemporalType.DATE)
     private Date dataCon;

@@ -13,14 +13,14 @@ import lombok.*;
 public class Prontuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idPront")
-    private Long id;
+    @Column(name = "idpront")
+    private Long idpront;
 
-    @Column(name = "idPac", nullable = false)
-    private Integer idPac;
+    @Column(name = "idpac", nullable = false)
+    private Integer idpac;
 
-    @Column(name = "idMed")
-    private Integer idMed;
+    @Column(name = "idmed")
+    private Integer idmed;
 
     @Column(name = "limitacoes", length = 100)
     private String limitacoes;
@@ -28,5 +28,4 @@ public class Prontuario {
     @Column(name = "alergias", length = 100)
     private String alergias;
 
-    // Outras anotações, getters e setters
 }

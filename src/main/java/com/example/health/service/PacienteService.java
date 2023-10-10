@@ -19,8 +19,8 @@ public class PacienteService {
         return this.repository.findAll();
     }
     public void atualizar(Paciente paciente){
-        Paciente a = this.repository.getReferenceById(paciente.getId());
-        a.setEndereco(paciente.getEndereco());
+        Paciente a = this.repository.getReferenceById(paciente.getIdpac());
+        //a.setEndereco(paciente.getEndereco());
         a.setEmail(paciente.getEmail());
     }
 

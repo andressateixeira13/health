@@ -36,7 +36,7 @@ public class MedicoService {
     }
 
     public void atualizarMedico(Medico medico) {
-        Medico m = this.medicoRepository.getReferenceById(medico.getId());
+        Medico m = this.medicoRepository.getReferenceById(medico.getIdmed());
         m.setNome(medico.getNome());
 
     }

@@ -29,8 +29,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth->
                         auth.requestMatchers(HttpMethod.POST,"/login").permitAll()
+                                .requestMatchers(HttpMethod.POST,"/usuario").permitAll()
                                 .requestMatchers(HttpMethod.GET,"/usuario").hasAuthority("ROLE_ADMIN")
-                                .requestMatchers(HttpMethod.GET,"/aluno").hasAnyAuthority("ROLE_ALUNO","ROLE_ADMIN")
+                                .requestMatchers(HttpMethod.GET,"/paciente").hasAnyAuthority("ROLE_PACIENTE","ROLE_ADMIN")
                                 .anyRequest().authenticated())
                 .addFilterBefore(this.autenticacaoFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

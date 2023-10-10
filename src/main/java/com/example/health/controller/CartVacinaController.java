@@ -44,7 +44,7 @@ public class CartVacinaController {
         CartVacina savedCartVacina = cartVacinaService.salvarCartVacina(cartVacina);
 
         if (savedCartVacina != null) {
-            URI uri = uriBuilder.path("/cartvacina/{id}").buildAndExpand(savedCartVacina.getId()).toUri();
+            URI uri = uriBuilder.path("/cartvacina/{id}").buildAndExpand(savedCartVacina.getIdvac()).toUri();
             return ResponseEntity.created(uri).body(savedCartVacina);
         } else {
             return ResponseEntity.badRequest().build();

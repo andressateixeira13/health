@@ -16,11 +16,11 @@ import java.util.Date;
 public class CartVacina {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idVac")
-    private Long id;
+    @Column(name = "idvac")
+    private Long idvac;
 
-    @Column(name = "idPac")
-    private Integer idPac;
+    @Column(name = "idpac")
+    private Integer idpac;
 
     @Column(name = "nome", nullable = false)
     @NotBlank

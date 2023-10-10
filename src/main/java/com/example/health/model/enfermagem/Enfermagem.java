@@ -16,16 +16,16 @@ import java.util.Date;
 public class Enfermagem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idEnf")
-    private Long id;
+    @Column(name = "idenf")
+    private Long idenf;
 
     @Column(name = "nome", nullable = false)
     @NotBlank
     private String nome;
 
-    @Column(name = "dataNasc", nullable = false)
+    @Column(name = "datanasc", nullable = false)
     @Temporal(TemporalType.DATE)
-    private Date dataNasc;
+    private Date datanasc;
 
     @Column(name = "cargo", nullable = false)
     @NotBlank

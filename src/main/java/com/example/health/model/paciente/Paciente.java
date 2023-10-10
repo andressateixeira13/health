@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 @Entity
@@ -15,16 +16,18 @@ import java.util.Date;
 @AllArgsConstructor
 public class Paciente {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idpac;
     @NotBlank
     private String nome;
     @Temporal(TemporalType.DATE)
-    private Date dataNasc;
+    private Date datanasc;
     @NotBlank
-    private String gerero;
-    @Embedded
+    private String genero;
+    /*@Embedded
     @JoinColumn(name = "idEnd")
-    private Endereco endereco;
+    private Endereco endereco;*/
+
+    private Long idend;
     @Email(message = "Email inválido")
     private String email;
 

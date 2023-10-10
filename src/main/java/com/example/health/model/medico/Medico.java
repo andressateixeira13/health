@@ -13,11 +13,11 @@ import java.util.Date;
 @Table(name = "medicos")
 @Getter
 @Setter
-@NoArgsConstructor // Construtor sem argumentos
-@AllArgsConstructor // Construtor com todos os argumentos
+@NoArgsConstructor
+@AllArgsConstructor
 public class Medico {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idmed;
 
     @NotBlank
     private String nome;

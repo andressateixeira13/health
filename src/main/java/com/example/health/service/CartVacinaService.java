@@ -33,7 +33,7 @@ public class CartVacinaService {
 
         if (cartVacinaExistente.isPresent()) {
             CartVacina cartVacina = cartVacinaExistente.get();
-            cartVacina.setIdPac(cartVacinaAtualizada.getIdPac());
+            cartVacina.setIdpac(cartVacinaAtualizada.getIdpac());
             cartVacina.setNome(cartVacinaAtualizada.getNome());
             cartVacina.setDataAplic(cartVacinaAtualizada.getDataAplic());
 

@@ -33,7 +33,7 @@ public class ExameService {
 
         if (exameExistente.isPresent()) {
             Exame exame = exameExistente.get();
-            exame.setIdPac(exameAtualizado.getIdPac());
+            exame.setIdpac(exameAtualizado.getIdpac());
             exame.setNome(exameAtualizado.getNome());
             exame.setDescricao(exameAtualizado.getDescricao());
             exame.setFileData(exameAtualizado.getFileData());

@@ -44,7 +44,7 @@ public class CirurgiaController {
         Cirurgia savedCirurgia = cirurgiaService.salvarCirurgia(cirurgia);
 
         if (savedCirurgia != null) {
-            URI uri = uriBuilder.path("/cirurgias/{id}").buildAndExpand(savedCirurgia.getId()).toUri();
+            URI uri = uriBuilder.path("/cirurgias/{id}").buildAndExpand(savedCirurgia.getIdcirurgia()).toUri();
             return ResponseEntity.created(uri).body(savedCirurgia);
         } else {
             return ResponseEntity.badRequest().build();

@@ -17,13 +17,13 @@ public class TokenServiceJWT {
         try{
             Algorithm algorithm = Algorithm.HMAC256("POO2");
             return JWT.create()
-                    .withIssuer("API Avaliar Projetos")
+                    .withIssuer("API Health")
                     .withSubject(user.getUsername())
                     .withClaim("ROLE", user.getAuthorities().stream().toList().get(0).toString())
                     .withExpiresAt(dataExpiracao())
                     .sign(algorithm);
         }catch (JWTCreationException e){
-            throw new RuntimeException("Eror ao gerar o token JWT", e);
+            throw new RuntimeException("Erro ao gerar o token JWT", e);
         }
     }
     private Instant dataExpiracao(){
@@ -33,7 +33,7 @@ public class TokenServiceJWT {
         try{
             Algorithm algorithm = Algorithm.HMAC256("POO2");
             return JWT.require(algorithm)
-                    .withIssuer("API ")
+                    .withIssuer("API Health")
                     .build()
                     .verify(token)
                     .getSubject();

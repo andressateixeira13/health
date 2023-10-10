@@ -1,30 +1,33 @@
 package com.example.health.model.medico;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Date;
 
 @Entity
 @Table(name = "medicos")
+@Getter
+@Setter
 @NoArgsConstructor // Construtor sem argumentos
 @AllArgsConstructor // Construtor com todos os argumentos
 public class Medico {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idMed")
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nome", nullable = false)
+    @NotBlank
     private String nome;
 
     @Temporal(TemporalType.DATE)
     private Date dataNasc;
 
-    @Column(name = "especialidade", nullable = false)
+    @NotBlank
     private String especialidade;
 
-    @Column(name = "crm", nullable = false)
+    @NotBlank
     private String crm;
 }

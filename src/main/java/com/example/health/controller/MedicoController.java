@@ -41,9 +41,9 @@ public class MedicoController {
     }*/
 
     @PutMapping("/{id}")
-    public ResponseEntity<Medico> atualizarMedico(@PathVariable Long id, @RequestBody Medico medicoAtualizado) {
-        Medico updatedMedico = medicoService.atualizarMedico(id, medicoAtualizado);
-        return ResponseEntity.ok(updatedMedico);
+    public ResponseEntity atualizarMedico(@RequestBody Medico medico) {
+        this.medicoService.atualizarMedico(medico);
+        return ResponseEntity.ok(medico);
     }
 
     @DeleteMapping("/{id}")

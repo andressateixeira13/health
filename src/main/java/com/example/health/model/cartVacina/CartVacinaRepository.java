@@ -5,4 +5,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CartVacinaRepository extends JpaRepository<CartVacina, Long> {
+    public CartVacina getById(Long id);
+
 }

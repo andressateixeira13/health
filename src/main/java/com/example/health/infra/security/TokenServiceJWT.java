@@ -33,7 +33,7 @@ public class TokenServiceJWT {
         try{
             Algorithm algorithm = Algorithm.HMAC256("POO2");
             return JWT.require(algorithm)
-                    .withIssuer("API Avaliar Projetos")
+                    .withIssuer("API ")
                     .build()
                     .verify(token)
                     .getSubject();

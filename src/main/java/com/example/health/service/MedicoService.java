@@ -35,28 +35,16 @@ public class MedicoService {
         return medicoRepository.save(medico);
     }
 
-    public Medico atualizarMedico(Long id, Medico medicoAtualizado) {
-        Optional<Medico> medicoExistente = medicoRepository.findById(id);
+    public void atualizarMedico(Medico medico) {
+        Medico m = this.medicoRepository.getReferenceById(medico.getId());
+        m.setNome(medico.getNome());
 
-        if (medicoExistente.isPresent()) {
-            Medico medico = medicoExistente.get();
-            /*medico.setNome(medicoAtualizado.getNome());
-            medico.setDataNasc(medicoAtualizado.getDataNasc());
-            medico.setEspecialidade(medicoAtualizado.getEspecialidade());
-            medico.setCrm(medicoAtualizado.getCrm());*/
-
-            return medicoRepository.save(medico);
-        } else {
-            //throw new MedicoNotFoundException("Médico não encontrado com ID " + id);
-        }
     }
 
     public void excluirMedico(Long id) {
-        if (medicoRepository.existsById(id)) {
-            medicoRepository.deleteById(id);
-        } else {
-           // throw new MedicoNotFoundException("Médico não encontrado com ID " + id);
-        }
+        medicoRepository.deleteById(id);
     }
-}
+
+
+
 }

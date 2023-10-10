@@ -20,9 +20,8 @@ public class Paciente {
     private String nome;
     @Temporal(TemporalType.DATE)
     private Date dataNasc;
-    @Embedded
-    @JoinColumn(name = "idGenero")
-    private Genero gerero;
+    @NotBlank
+    private String gerero;
     @Embedded
     @JoinColumn(name = "idEnd")
     private Endereco endereco;

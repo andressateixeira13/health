@@ -18,9 +18,9 @@ public class AutenticacaoFilter extends OncePerRequestFilter {
 
     private final TokenServiceJWT tokenServiceJWT;
     private final AutenticacaoService autenticacaoService;
-    public AutenticacaoFilter(TokenServiceJWT tokenServiceJWT, AutenticacaoService autenticacaoSerivce){
+    public AutenticacaoFilter(TokenServiceJWT tokenServiceJWT, AutenticacaoService autenticacaoService){
         this.tokenServiceJWT = tokenServiceJWT;
-        this.autenticacaoService = autenticacaoSerivce;
+        this.autenticacaoService = autenticacaoService;
     }
 
     @Override

@@ -9,14 +9,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity(name = "Usuario")
-@Table(name = "usuarios")
+@Table(name = "usuario")
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Usuario {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
     @Email

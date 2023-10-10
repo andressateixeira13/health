@@ -4,6 +4,7 @@ import com.example.health.model.prontuario.Prontuario;
 import com.example.health.model.prontuario.ProntuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -41,7 +42,7 @@ public class ProntuarioService {
             return prontuarioRepository.save(prontuario);
         }
 
-        return null; // Ou você pode lançar uma exceção ou retornar algo que indique que não foi encontrado
+        return null;
     }
 
     public void excluirProntuario(Long id) {

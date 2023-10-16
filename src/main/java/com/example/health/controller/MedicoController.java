@@ -2,10 +2,11 @@ package com.example.health.controller;
 
 import com.example.health.model.medico.Medico;
 import com.example.health.service.MedicoService;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
@@ -30,14 +31,13 @@ public class MedicoController {
         return ResponseEntity.ok(medicos);
     }
 
-    @PostMapping("/")
-    public ResponseEntity<Medico> salvarMedico(@RequestBody @Valid Medico medico) {
-        Medico savedMedico = medicoService.salvarMedico(medico);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(savedMedico.getIdmed())
-                .toUri();
-        return ResponseEntity.created(uri).body(savedMedico);
+    @PostMapping
+    @Transactional
+    public ResponseEntity salvarMedico(@RequestBody @Valid Medico medico, UriComponentsBuilder uriBuilder) {
+        this.medicoService.salvarMedico(medico);
+        URI uri = uriBuilder.path("/paciente/{id}").buildAndExpand(medico.getIdmed()).toUri();
+
+        return ResponseEntity.created(uri).body(medico);
     }
 
     @PutMapping("/{id}")

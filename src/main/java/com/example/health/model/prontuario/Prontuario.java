@@ -17,10 +17,10 @@ public class Prontuario {
     private Long idpront;
 
     @Column(name = "idpac", nullable = false)
-    private Integer idpac;
+    private Long idpac;
 
     @Column(name = "idmed")
-    private Integer idmed;
+    private Long idmed;
 
     @Column(name = "limitacoes", length = 100)
     private String limitacoes;

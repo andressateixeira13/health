@@ -31,7 +31,12 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
                         auth.requestMatchers(HttpMethod.POST,"/login").permitAll()
                                 .requestMatchers(HttpMethod.POST,"/usuario").permitAll()
                                 .requestMatchers(HttpMethod.GET,"/usuario").hasAuthority("ROLE_ADMIN")
+                                .requestMatchers(HttpMethod.POST, "/paciente").hasAnyAuthority("ROLE_MEDICO","ROLE_ADMIN")
                                 .requestMatchers(HttpMethod.GET,"/paciente").hasAnyAuthority("ROLE_PACIENTE","ROLE_ADMIN")
+                                .requestMatchers(HttpMethod.POST,"/prontuario").hasAnyAuthority("ROLE_MEDICO","ROLE_ADMIN")
+                                .requestMatchers(HttpMethod.GET,"/prontuario").hasAnyAuthority("ROLE_MEDICO","ROLE_ADMIN")
+                                .requestMatchers(HttpMethod.POST,"/medico").hasAnyAuthority("ROLE_ADMIN")
+                                .requestMatchers(HttpMethod.GET,"/medico").hasAnyAuthority("ROLE_MEDICO", "ROLE_ADMIN")
                                 .anyRequest().authenticated())
                 .addFilterBefore(this.autenticacaoFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

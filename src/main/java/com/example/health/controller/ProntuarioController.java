@@ -1,7 +1,9 @@
 package com.example.health.controller;
 
+import com.example.health.model.paciente.Paciente;
 import com.example.health.model.prontuario.Prontuario;
 import com.example.health.service.ProntuarioService;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,28 +29,20 @@ public class ProntuarioController {
         return ResponseEntity.ok(prontuarios);
     }
 
+
     @GetMapping("/{id}")
-    public ResponseEntity<Prontuario> buscarProntuarioPorId(@PathVariable Long id) {
-        Optional<Prontuario> prontuario = prontuarioService.buscarProntuarioPorId(id);
+    public Prontuario prontuario(@PathVariable Long id){return this.prontuarioService.findById(id);}
 
-        if (prontuario.isPresent()) {
-            return ResponseEntity.ok(prontuario.get());
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
 
-    @PostMapping("/")
-    public ResponseEntity<Prontuario> salvarProntuario(@RequestBody @Valid Prontuario prontuario,
-                                                       UriComponentsBuilder uriBuilder) {
-        Prontuario savedProntuario = prontuarioService.salvarProntuario(prontuario);
 
-        if (savedProntuario != null) {
-            URI uri = uriBuilder.path("/prontuario/{id}").buildAndExpand(savedProntuario.getIdpront()).toUri();
-            return ResponseEntity.created(uri).body(savedProntuario);
-        } else {
-            return ResponseEntity.badRequest().build();
-        }
+    @PostMapping
+    @Transactional
+    public ResponseEntity salvarProntuario(@RequestBody @Valid Prontuario prontuario, UriComponentsBuilder uriBuilder) {
+        this.prontuarioService.salvarProntuario(prontuario);
+
+
+        URI uri = uriBuilder.path("/prontuario/{id}").buildAndExpand(prontuario.getIdpront()).toUri();
+        return ResponseEntity.created(uri).body(prontuario);
     }
 
     @PutMapping("/{id}")

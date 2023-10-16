@@ -1,5 +1,6 @@
 package com.example.health.service;
 
+import com.example.health.model.paciente.Paciente;
 import com.example.health.model.prontuario.Prontuario;
 import com.example.health.model.prontuario.ProntuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,15 +19,11 @@ public class ProntuarioService {
     }
 
     public List<Prontuario> listarProntuarios() {
-        return prontuarioRepository.findAll();
+        return this.prontuarioRepository.findAll();
     }
 
-    public Optional<Prontuario> buscarProntuarioPorId(Long id) {
-        return prontuarioRepository.findById(id);
-    }
-
-    public Prontuario salvarProntuario(Prontuario prontuario) {
-        return prontuarioRepository.save(prontuario);
+    public void salvarProntuario(Prontuario prontuario) {
+        this.prontuarioRepository.save(prontuario);
     }
 
     public Prontuario atualizarProntuario(Long id, Prontuario prontuarioAtualizado) {
@@ -47,5 +44,9 @@ public class ProntuarioService {
 
     public void excluirProntuario(Long id) {
         prontuarioRepository.deleteById(id);
+    }
+
+    public Prontuario findById(Long id) {
+        return this.prontuarioRepository.findById(id).get();
     }
 }

@@ -23,7 +23,7 @@ public class Medico {
     private String nome;
 
     @Temporal(TemporalType.DATE)
-    private Date dataNasc;
+    private Date datanasc;
 
     @NotBlank
     private String especialidade;

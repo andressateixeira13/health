@@ -24,15 +24,11 @@ public class MedicoService {
     public Medico findById(Long id){ return this.medicoRepository.findById(id).get();}
 
     public List<Medico> listarTodos() {
-        return medicoRepository.findAll();
+        return this.medicoRepository.findAll();
     }
 
-    public Optional<Medico> buscarPorId(Long id) {
-        return medicoRepository.findById(id);
-    }
-
-    public Medico salvarMedico(Medico medico) {
-        return medicoRepository.save(medico);
+    public void salvarMedico(Medico medico) {
+        this.medicoRepository.save(medico);
     }
 
     public void atualizarMedico(Medico medico) {

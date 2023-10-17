@@ -47,18 +47,11 @@ public class ConsultaController {
         return ResponseEntity.ok(this.service.listar());
     }
 
-
     @PutMapping
     @Transactional
-    public ResponseEntity<Consulta> atualizar(@PathVariable Long id,
-                                                          @RequestBody Consulta consultaAtualizado) {
-        Consulta updatedConsulta = service.atualizar(id, consultaAtualizado);
-
-        if (updatedConsulta != null) {
-            return ResponseEntity.ok(updatedConsulta);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity atualizar(@RequestBody Consulta consulta){
+        this.service.atualizar(consulta);
+        return ResponseEntity.ok(consulta);
     }
 
     @DeleteMapping("/{id}")
@@ -68,8 +61,8 @@ public class ConsultaController {
     }
 
 
-    @GetMapping("/consultar/{id}")
-    public List<ConsultaDTO> listarConsultas(@PathVariable Long id){
+    @GetMapping("/paciente/{id}")
+    public List<ConsultaDTO> listarConsultasPorPaciente(@PathVariable Long id){
         return this.service.findByConsultaPorPaciente(id);
     }
 

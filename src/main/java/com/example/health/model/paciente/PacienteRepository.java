@@ -12,9 +12,9 @@ public interface PacienteRepository extends JpaRepository<Paciente,Long> {
 
     public Optional<Paciente>findById(Long id);
 
-   /* @Query(value = "SELECT a.id as idpac, a.nome as nome, a.dataNasc as dataNasc, a.genero as genero, a.email as email"
-    + "FROM paciente a where a.id.consulta =:id", nativeQuery = true)
-    List<PacienteDTO> findPacienteByConsulta(@Param("id") int id);
-    ---> fazer na consulta
-    */
+  /* @Query(value = "SELECT a.idend as idend, e.rua as rua, e.bairro as bairro, e.cidade as cidade, e.uf as uf"
+    + "FROM paciente a, endereco e where a.idpac =:id", nativeQuery = true)
+    List<Paciente> findPacienteByEndereco(@Param("id") Long id);*/
+
+
 }

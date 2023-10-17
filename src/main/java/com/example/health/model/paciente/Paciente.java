@@ -23,11 +23,6 @@ public class Paciente {
     private Date datanasc;
     @NotBlank
     private String genero;
-    /*@Embedded
-    @JoinColumn(name = "idEnd")
-    private Endereco endereco;*/
-
-    private Long idend;
     @Email(message = "Email inválido")
     private String email;
 

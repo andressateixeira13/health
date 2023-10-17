@@ -1,5 +1,6 @@
 package com.example.health.controller;
 
+import com.example.health.model.consulta.Consulta;
 import com.example.health.model.paciente.Paciente;
 import com.example.health.model.prontuario.Prontuario;
 import com.example.health.service.ProntuarioService;
@@ -45,16 +46,11 @@ public class ProntuarioController {
         return ResponseEntity.created(uri).body(prontuario);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Prontuario> atualizarProntuario(@PathVariable Long id,
-                                                          @RequestBody Prontuario prontuarioAtualizado) {
-        Prontuario updatedProntuario = prontuarioService.atualizarProntuario(id, prontuarioAtualizado);
-
-        if (updatedProntuario != null) {
-            return ResponseEntity.ok(updatedProntuario);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    @PutMapping
+    @Transactional
+    public ResponseEntity atualizar(@RequestBody Prontuario prontuario){
+        this.prontuarioService.atualizar(prontuario);
+        return ResponseEntity.ok(prontuario);
     }
 
     @DeleteMapping("/{id}")

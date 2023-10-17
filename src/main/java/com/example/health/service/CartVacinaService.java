@@ -2,6 +2,7 @@ package com.example.health.service;
 
 import com.example.health.model.cartVacina.CartVacina;
 import com.example.health.model.cartVacina.CartVacinaRepository;
+import com.example.health.model.consulta.Consulta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -28,19 +29,10 @@ public class CartVacinaService {
         return cartVacinaRepository.save(cartVacina);
     }
 
-    public CartVacina atualizarCartVacina(Long id, CartVacina cartVacinaAtualizada) {
-        Optional<CartVacina> cartVacinaExistente = cartVacinaRepository.findById(id);
-
-        if (cartVacinaExistente.isPresent()) {
-            CartVacina cartVacina = cartVacinaExistente.get();
-            cartVacina.setIdpac(cartVacinaAtualizada.getIdpac());
-            cartVacina.setNome(cartVacinaAtualizada.getNome());
-            cartVacina.setDataAplic(cartVacinaAtualizada.getDataAplic());
-
-            return cartVacinaRepository.save(cartVacina);
-        }
-
-        return null; // Ou você pode lançar uma exceção ou retornar algo que indique que não foi encontrado
+    public void atualizar(CartVacina cartVacina){
+        CartVacina a = this.cartVacinaRepository.getReferenceById(cartVacina.getIdvac());
+        a.setNome(cartVacina.getNome());
+        a.setDataAplic(cartVacina.getDataAplic());
     }
 
     public void excluirCartVacina(Long id) {

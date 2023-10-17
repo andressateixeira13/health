@@ -1,5 +1,6 @@
 package com.example.health.service;
 
+import com.example.health.model.consulta.Consulta;
 import com.example.health.model.consulta.ConsultaDTO;
 import com.example.health.model.exame.Exame;
 import com.example.health.model.exame.ExameRepository;
@@ -29,19 +30,11 @@ public class ExameService {
         return exameRepository.save(exame);
     }
 
-    public Exame atualizarExame(Long id, Exame exameAtualizado) {
-        Optional<Exame> exameExistente = exameRepository.findById(id);
-
-        if (exameExistente.isPresent()) {
-            Exame exame = exameExistente.get();
-            exame.setNome(exameAtualizado.getNome());
-            exame.setDescricao(exameAtualizado.getDescricao());
-            exame.setFileData(exameAtualizado.getFileData());
-
-            return exameRepository.save(exame);
-        }
-
-        return null;
+    public void atualizar(Exame exame){
+        Exame a = this.exameRepository.getReferenceById(exame.getIdexame());
+        a.setDescricao(exame.getDescricao());
+        a.setNome(exame.getNome());
+        a.setFileData(exame.getFileData());
     }
 
     public void excluirExame(Long id) {

@@ -2,6 +2,7 @@ package com.example.health.service;
 
 import com.example.health.model.cirurgia.Cirurgia;
 import com.example.health.model.cirurgia.CirurgiaRepository;
+import com.example.health.model.consulta.Consulta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -28,20 +29,10 @@ public class CirurgiaService {
         return cirurgiaRepository.save(cirurgia);
     }
 
-    public Cirurgia atualizarCirurgia(Long id, Cirurgia cirurgiaAtualizada) {
-        Optional<Cirurgia> cirurgiaExistente = cirurgiaRepository.findById(id);
-
-        if (cirurgiaExistente.isPresent()) {
-            Cirurgia cirurgia = cirurgiaExistente.get();
-            cirurgia.setIdpac(cirurgiaAtualizada.getIdpac());
-            cirurgia.setIdmed(cirurgiaAtualizada.getIdmed());
-            cirurgia.setNome(cirurgiaAtualizada.getNome());
-            cirurgia.setDescricao(cirurgiaAtualizada.getDescricao());
-
-            return cirurgiaRepository.save(cirurgia);
-        }
-
-        return null; // Ou você pode lançar uma exceção ou retornar algo que indique que não foi encontrado
+    public void atualizar(Cirurgia cirurgia){
+        Cirurgia a = this.cirurgiaRepository.getReferenceById(cirurgia.getIdcirurgia());
+        a.setNome(cirurgia.getNome());
+        a.setDescricao(cirurgia.getDescricao());
     }
 
     public void excluirCirurgia(Long id) {

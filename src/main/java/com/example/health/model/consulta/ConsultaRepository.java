@@ -16,6 +16,5 @@ public interface ConsultaRepository extends JpaRepository<Consulta, Long> {
             "c.prescricao as prescricao FROM consultas c WHERE c.idpac=:id ", nativeQuery = true)
     List<ConsultaDTO> findConsultaByPaciente(@Param("id") Long id);
 
-    /*arrumar consulta*/
 
 }

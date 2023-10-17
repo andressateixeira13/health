@@ -1,11 +1,13 @@
 package com.example.health.controller;
 
+import com.example.health.model.consulta.Consulta;
 import com.example.health.model.consulta.ConsultaDTO;
 import com.example.health.model.exame.Exame;
 import com.example.health.service.ExameService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
@@ -52,16 +54,11 @@ public class ExameController {
         }
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Exame> atualizarExame(@PathVariable Long id,
-                                                @RequestBody Exame exameAtualizado) {
-        Exame updatedExame = exameService.atualizarExame(id, exameAtualizado);
-
-        if (updatedExame != null) {
-            return ResponseEntity.ok(updatedExame);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    @PutMapping
+    @Transactional
+    public ResponseEntity atualizar(@RequestBody Exame exame){
+        this.exameService.atualizar(exame);
+        return ResponseEntity.ok(exame);
     }
 
     @DeleteMapping("/{id}")

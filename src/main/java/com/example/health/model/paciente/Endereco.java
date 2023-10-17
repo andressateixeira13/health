@@ -1,7 +1,6 @@
 package com.example.health.model.paciente;
 
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -17,7 +16,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Endereco {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idend;
+    @NotBlank
+    @JoinColumn(name = "idpac")
+    private Long idpac;
     private String complemento;
     @NotBlank
     private String bairro;

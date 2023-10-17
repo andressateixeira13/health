@@ -1,10 +1,12 @@
 package com.example.health.controller;
 
 import com.example.health.model.cartVacina.CartVacina;
+import com.example.health.model.consulta.Consulta;
 import com.example.health.service.CartVacinaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
@@ -51,16 +53,11 @@ public class CartVacinaController {
         }
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<CartVacina> atualizarCartVacina(@PathVariable Long id,
-                                                          @RequestBody CartVacina cartVacinaAtualizada) {
-        CartVacina updatedCartVacina = cartVacinaService.atualizarCartVacina(id, cartVacinaAtualizada);
-
-        if (updatedCartVacina != null) {
-            return ResponseEntity.ok(updatedCartVacina);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    @PutMapping
+    @Transactional
+    public ResponseEntity atualizar(@RequestBody CartVacina cartVacina){
+        this.cartVacinaService.atualizar(cartVacina);
+        return ResponseEntity.ok(cartVacina);
     }
 
     @DeleteMapping("/{id}")

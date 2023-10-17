@@ -27,29 +27,14 @@ public class ConsultaService {
         return this.repository.findAll();
     }
 
-
-    public Consulta atualizar(Long id, Consulta consultaAtualizado){
-
-        Optional<Consulta> consultaExistente = repository.findById(id);
-
-        if (consultaExistente.isPresent()) {
-            Consulta consulta = consultaExistente.get();
-            consulta.setDiagnostico(consultaAtualizado.getDiagnostico());
-            consulta.setPrescricao(consultaAtualizado.getPrescricao());
-            consulta.setMotivo(consultaAtualizado.getMotivo());
-            consulta.setTratamento(consultaAtualizado.getTratamento());
-
-            return repository.save(consulta);
-        }
-
-        return null;
-        /*Consulta c = this.repository.getReferenceById(consulta.getIdcon());
-        c.getDiagnostico(consulta.getDiagnostico());
-        c.getDatacon(consulta.getDatacon());
-        c.getMotivo(consulta.getMotivo());
-        c.getPrescricao(consulta.getPrescricao());
-        c.getTratamento(consulta.getTratamento());*/
+    public void atualizar(Consulta consulta){
+        Consulta a = this.repository.getReferenceById(consulta.getIdcon());
+        a.setMotivo(consulta.getMotivo());
+        a.setPrescricao(consulta.getPrescricao());
+        a.setDiagnostico(consulta.getDiagnostico());
+        a.setTratamento(consulta.getTratamento());
     }
+
     public void excluir(Long id){
         this.repository.deleteById(id);
     }

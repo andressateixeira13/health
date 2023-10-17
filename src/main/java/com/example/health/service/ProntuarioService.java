@@ -1,5 +1,6 @@
 package com.example.health.service;
 
+import com.example.health.model.consulta.Consulta;
 import com.example.health.model.paciente.Paciente;
 import com.example.health.model.prontuario.Prontuario;
 import com.example.health.model.prontuario.ProntuarioRepository;
@@ -26,20 +27,11 @@ public class ProntuarioService {
         this.prontuarioRepository.save(prontuario);
     }
 
-    public Prontuario atualizarProntuario(Long id, Prontuario prontuarioAtualizado) {
-        Optional<Prontuario> prontuarioExistente = prontuarioRepository.findById(id);
-
-        if (prontuarioExistente.isPresent()) {
-            Prontuario prontuario = prontuarioExistente.get();
-            prontuario.setIdpac(prontuarioAtualizado.getIdpac());
-            prontuario.setIdmed(prontuarioAtualizado.getIdmed());
-            prontuario.setLimitacoes(prontuarioAtualizado.getLimitacoes());
-            prontuario.setAlergias(prontuarioAtualizado.getAlergias());
-
-            return prontuarioRepository.save(prontuario);
-        }
-
-        return null;
+    public void atualizar(Prontuario prontuario){
+        Prontuario a = this.prontuarioRepository.getReferenceById(prontuario.getIdpront());
+        a.setAlergias(prontuario.getAlergias());
+        a.setLimitacoes(prontuario.getLimitacoes());
+        a.setIdmed(prontuario.getIdmed());
     }
 
     public void excluirProntuario(Long id) {

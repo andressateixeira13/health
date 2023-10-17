@@ -1,10 +1,12 @@
 package com.example.health.controller;
 
 import com.example.health.model.cirurgia.Cirurgia;
+import com.example.health.model.consulta.Consulta;
 import com.example.health.service.CirurgiaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
@@ -51,16 +53,11 @@ public class CirurgiaController {
         }
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Cirurgia> atualizarCirurgia(@PathVariable Long id,
-                                                      @RequestBody Cirurgia cirurgiaAtualizada) {
-        Cirurgia updatedCirurgia = cirurgiaService.atualizarCirurgia(id, cirurgiaAtualizada);
-
-        if (updatedCirurgia != null) {
-            return ResponseEntity.ok(updatedCirurgia);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    @PutMapping
+    @Transactional
+    public ResponseEntity atualizar(@RequestBody Cirurgia cirurgia){
+        this.cirurgiaService.atualizar(cirurgia);
+        return ResponseEntity.ok(cirurgia);
     }
 
     @DeleteMapping("/{id}")

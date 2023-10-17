@@ -3,6 +3,7 @@ package com.example.health.controller;
 import com.example.health.model.consulta.Consulta;
 import com.example.health.model.consulta.ConsultaDTO;
 import com.example.health.model.paciente.Paciente;
+import com.example.health.model.prontuario.Prontuario;
 import com.example.health.service.ConsultaService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -36,10 +37,7 @@ public class ConsultaController {
     public ResponseEntity salvar(@RequestBody @Valid Consulta consulta, UriComponentsBuilder uriBuilder){
 
         this.service.salvar(consulta);
-        //monta a URI da aplicação dinamicamente
         URI uri = uriBuilder.path("/consulta/{id}").buildAndExpand(consulta.getIdcon()).toUri();
-        //created(uri) irá colocar no cabeçalho da requisição da resposta
-        // o parâmetro Location com a URI de acesso ao recurso criado
         return ResponseEntity.created(uri).body(consulta);
     }
 
@@ -50,16 +48,17 @@ public class ConsultaController {
     }
 
 
-    /*
-     ATUALIZAR DEVE DEVOLVER O RECURSO ATUALIZADO
-     Mas não é boa prática devolver a entidade JPA no controler;
-
-    * */
     @PutMapping
     @Transactional
-    public ResponseEntity atualizar(@RequestBody Consulta consulta){
-        this.service.atualizar(consulta);
-        return ResponseEntity.ok(consulta);
+    public ResponseEntity<Consulta> atualizar(@PathVariable Long id,
+                                                          @RequestBody Consulta consultaAtualizado) {
+        Consulta updatedConsulta = service.atualizar(id, consultaAtualizado);
+
+        if (updatedConsulta != null) {
+            return ResponseEntity.ok(updatedConsulta);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/{id}")
@@ -68,14 +67,9 @@ public class ConsultaController {
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/{id}/atribuir-projeto")
-    @Transactional
-    public ResponseEntity vincularProjeto(@PathVariable Long id, @RequestBody Paciente paciente){
-        return ResponseEntity.ok(this.service.atribuirPaciente(id, paciente));
-    }
 
-    @GetMapping("/projeto/{id}")
-    public List<ConsultaDTO> listarAlunos(@PathVariable int id){
+    @GetMapping("/consultar/{id}")
+    public List<ConsultaDTO> listarConsultas(@PathVariable Long id){
         return this.service.findByConsultaPorPaciente(id);
     }
 

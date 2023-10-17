@@ -20,11 +20,11 @@ import java.util.Date;
 public class Consulta {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idcon;
-    @ManyToOne
+
     @JoinColumn(name = "idpac")
-    private Paciente paciente;
+    private Long idpac;
     @Temporal(TemporalType.DATE)
-    private Date dataCon;
+    private Date datacon;
 
     @Size(max = 200)
     private String motivo;

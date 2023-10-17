@@ -1,5 +1,6 @@
 package com.example.health.model.exame;
 
+import com.example.health.model.paciente.Paciente;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -17,8 +18,9 @@ public class Exame {
     @Column(name = "idexame")
     private Long idexame;
 
+    @ManyToOne
     @JoinColumn(name = "idpac")
-    private Integer idpac;
+    private Paciente idpac;
 
     @NotBlank
     private String nome;

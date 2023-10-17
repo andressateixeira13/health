@@ -1,5 +1,6 @@
 package com.example.health.controller;
 
+import com.example.health.model.consulta.ConsultaDTO;
 import com.example.health.model.exame.Exame;
 import com.example.health.service.ExameService;
 import jakarta.validation.Valid;
@@ -67,5 +68,10 @@ public class ExameController {
     public ResponseEntity<Void> excluirExame(@PathVariable Long id) {
         exameService.excluirExame(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/exames/{id}")
+    public List<Exame> listarExames(@PathVariable int id){
+        return this.exameService.findByExamePorPaciente(id);
     }
 }

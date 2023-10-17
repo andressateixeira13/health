@@ -1,5 +1,6 @@
 package com.example.health.service;
 
+import com.example.health.model.consulta.ConsultaDTO;
 import com.example.health.model.exame.Exame;
 import com.example.health.model.exame.ExameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,6 @@ public class ExameService {
 
         if (exameExistente.isPresent()) {
             Exame exame = exameExistente.get();
-            exame.setIdpac(exameAtualizado.getIdpac());
             exame.setNome(exameAtualizado.getNome());
             exame.setDescricao(exameAtualizado.getDescricao());
             exame.setFileData(exameAtualizado.getFileData());
@@ -41,10 +41,14 @@ public class ExameService {
             return exameRepository.save(exame);
         }
 
-        return null; // Ou você pode lançar uma exceção ou retornar algo que indique que não foi encontrado
+        return null;
     }
 
     public void excluirExame(Long id) {
         exameRepository.deleteById(id);
+    }
+
+    public List<Exame> findByExamePorPaciente(int id){
+        return this.exameRepository.findExameByPaciente(id);
     }
 }

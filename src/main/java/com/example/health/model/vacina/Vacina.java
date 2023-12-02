@@ -1,4 +1,4 @@
-package com.example.health.model.cartVacina;
+package com.example.health.model.vacina;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -7,13 +7,13 @@ import lombok.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "cartVacina")
+@Table(name = "vacina")
 @Data
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CartVacina {
+public class Vacina {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idvac")

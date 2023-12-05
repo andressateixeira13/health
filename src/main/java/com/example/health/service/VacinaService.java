@@ -1,6 +1,8 @@
 package com.example.health.service;
 
+import com.example.health.model.consulta.ConsultaDTO;
 import com.example.health.model.vacina.Vacina;
+import com.example.health.model.vacina.VacinaDTO;
 import com.example.health.model.vacina.VacinaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,5 +38,9 @@ public class VacinaService {
 
     public void excluirVacina(Long id) {
         vacinaRepository.deleteById(id);
+    }
+
+    public List<VacinaDTO> findByVacinasPorPaciente(Long id){
+        return this.vacinaRepository.findVacinasPorPaciente(id);
     }
 }

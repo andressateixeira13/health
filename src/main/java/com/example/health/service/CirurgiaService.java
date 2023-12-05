@@ -1,8 +1,10 @@
 package com.example.health.service;
 
 import com.example.health.model.cirurgia.Cirurgia;
+import com.example.health.model.cirurgia.CirurgiaDTO;
 import com.example.health.model.cirurgia.CirurgiaRepository;
 import com.example.health.model.consulta.Consulta;
+import com.example.health.model.consulta.ConsultaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -15,10 +17,6 @@ public class CirurgiaService {
     @Autowired
     public CirurgiaService(CirurgiaRepository cirurgiaRepository) {
         this.cirurgiaRepository = cirurgiaRepository;
-    }
-
-    public List<Cirurgia> listarCirurgias() {
-        return cirurgiaRepository.findAll();
     }
 
     public Optional<Cirurgia> buscarCirurgiaPorId(Long id) {
@@ -38,4 +36,9 @@ public class CirurgiaService {
     public void excluirCirurgia(Long id) {
         cirurgiaRepository.deleteById(id);
     }
+
+    public List<CirurgiaDTO> findByCirurgiasPorPaciente(Long id){
+        return this.cirurgiaRepository.findCirurgiaByPaciente(id);
+    }
+
 }

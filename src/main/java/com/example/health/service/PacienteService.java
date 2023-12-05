@@ -1,8 +1,6 @@
 package com.example.health.service;
 
-import com.example.health.model.paciente.Endereco;
-import com.example.health.model.paciente.Paciente;
-import com.example.health.model.paciente.PacienteRepository;
+import com.example.health.model.paciente.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,8 +29,9 @@ public class PacienteService {
         return this.repository.findById(id).get();
     }
 
-    /*public List<Paciente> findByEnderecoPorPaciente(Long id){
-        return this.repository.findPacienteByEndereco(id);
-    }*/
+
+    public List<PacienteDTO> findByEnderecoPorPaciente(Long id){
+        return this.repository.findEnderecoPorPaciente(id);
+    }
 
 }

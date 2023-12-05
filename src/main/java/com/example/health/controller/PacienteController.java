@@ -1,8 +1,7 @@
 package com.example.health.controller;
 
-import com.example.health.model.consulta.ConsultaDTO;
-import com.example.health.model.paciente.Endereco;
 import com.example.health.model.paciente.Paciente;
+import com.example.health.model.paciente.PacienteDTO;
 import com.example.health.service.PacienteService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -41,9 +40,9 @@ public class PacienteController {
         return ResponseEntity.ok(paciente);
     }
 
-    /*@GetMapping("/paciente/{id}")
-    public List<Paciente> listarEnderecoPorPaciente(@PathVariable Long id){
+    @GetMapping("/paciente/{id}")
+    public List<PacienteDTO> listarEnderecoPorPaciente(@PathVariable Long id){
         return this.service.findByEnderecoPorPaciente(id);
-    }*/
+    }
 
 }

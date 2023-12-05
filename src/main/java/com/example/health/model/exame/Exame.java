@@ -28,7 +28,6 @@ public class Exame {
     @NotBlank
     private String descricao;
 
-    @NotBlank
     private byte[] fileData;
 
 }

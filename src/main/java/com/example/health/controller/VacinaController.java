@@ -1,6 +1,8 @@
 package com.example.health.controller;
 
+import com.example.health.model.consulta.ConsultaDTO;
 import com.example.health.model.vacina.Vacina;
+import com.example.health.model.vacina.VacinaDTO;
 import com.example.health.service.VacinaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,5 +65,10 @@ public class VacinaController {
     public ResponseEntity<Void> excluirVacina(@PathVariable Long id) {
         vacinaService.excluirVacina(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/paciente/{id}")
+    public List<VacinaDTO> listarConsultasPorPaciente(@PathVariable Long id){
+        return this.vacinaService.findByVacinasPorPaciente(id);
     }
 }

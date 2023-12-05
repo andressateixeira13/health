@@ -1,7 +1,9 @@
 package com.example.health.controller;
 
 import com.example.health.model.cirurgia.Cirurgia;
+import com.example.health.model.cirurgia.CirurgiaDTO;
 import com.example.health.model.consulta.Consulta;
+import com.example.health.model.consulta.ConsultaDTO;
 import com.example.health.service.CirurgiaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +23,6 @@ public class CirurgiaController {
     @Autowired
     public CirurgiaController(CirurgiaService cirurgiaService) {
         this.cirurgiaService = cirurgiaService;
-    }
-
-    @GetMapping("/")
-    public ResponseEntity<List<Cirurgia>> listarCirurgias() {
-        List<Cirurgia> cirurgias = cirurgiaService.listarCirurgias();
-        return ResponseEntity.ok(cirurgias);
     }
 
     @GetMapping("/{id}")
@@ -64,5 +60,10 @@ public class CirurgiaController {
     public ResponseEntity<Void> excluirCirurgia(@PathVariable Long id) {
         cirurgiaService.excluirCirurgia(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/paciente/{id}")
+    public List<CirurgiaDTO> listarCirurgiasPorPaciente(@PathVariable Long id){
+        return this.cirurgiaService.findByCirurgiasPorPaciente(id);
     }
 }

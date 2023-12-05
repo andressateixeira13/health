@@ -15,9 +15,9 @@ public interface CirurgiaRepository extends JpaRepository<Cirurgia, Long> {
 
     public Optional<Cirurgia> findById(Long id);
 
-    /*@Query(value = "SELECT c.id as idcirurgia, c.idpac as idpac, c.idmed as idmed," +
-            " c.nome as nome, c.descricao as descricao FROM consultas WHERE c.idcirurgia =:id", nativeQuery = true)
-    List<ConsultaDTO> findCirurgiaByPaciente(@Param("id") int id);
-*/
+    @Query(value = "SELECT  c.nome as nomecirurgia, m.nome as nomemed, p.nome as nomepac, c.descricao" +
+            " FROM cirurgias c, paciente p, medicos m WHERE c.idcirurgia =:id AND p.idpac=c.idpac AND m.idmed = c.idmed", nativeQuery = true)
+    List<CirurgiaDTO> findCirurgiaByPaciente(@Param("id") Long id);
+
 
 }

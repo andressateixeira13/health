@@ -15,8 +15,4 @@ public interface ProntuarioRepository extends JpaRepository<Prontuario, Long> {
 
     public Optional<Prontuario>findById(Long id);
 
-    @Query(value = "SELECT a.id as idpac, a.nome as nome, a.dataNasc as dataNasc, a.genero as genero, a.email as email"
-            + "FROM paciente a where a.id.consulta =:id", nativeQuery = true)
-    List<Prontuario> findProntuarioByPaciente(@Param("id") int id);
-
 }

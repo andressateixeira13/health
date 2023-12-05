@@ -51,4 +51,10 @@ public class MedicoController {
         medicoService.excluirMedico(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/{especialidade}")
+    public List<Medico> listarMedicosPorEspecialidade(@PathVariable String especialidade){
+        return this.medicoService.buscarPorEspecialidade(especialidade);
+    }
+
 }

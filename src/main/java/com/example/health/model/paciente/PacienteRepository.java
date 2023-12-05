@@ -1,5 +1,6 @@
 package com.example.health.model.paciente;
 
+import com.example.health.model.medico.Medico;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -12,9 +13,9 @@ public interface PacienteRepository extends JpaRepository<Paciente,Long> {
 
     public Optional<Paciente>findById(Long id);
 
-  /* @Query(value = "SELECT a.idend as idend, e.rua as rua, e.bairro as bairro, e.cidade as cidade, e.uf as uf"
-    + "FROM paciente a, endereco e where a.idpac =:id", nativeQuery = true)
-    List<Paciente> findPacienteByEndereco(@Param("id") Long id);*/
+    @Query(value = "SELECT p.nome, e.rua, e.numero, e.bairro, e.complemento, e.cidade, e.uf, e.cep" +
+            " FROM paciente p, endereco e WHERE p.idpac=:id AND e.idpac=:id", nativeQuery = true)
+    List<PacienteDTO> findEnderecoPorPaciente(Long id);
 
 
 }

@@ -15,8 +15,8 @@ public interface ExameRepository extends JpaRepository<Exame, Long> {
 
     public Optional<Exame> findById(Long id);
 
-    @Query(value = "SELECT c.id as idexame, c.idpac as idpac, c.descricao as descricao," +
-            "c.file_data as file_data FROM exames WHERE c.idexame =:id", nativeQuery = true)
-    List<Exame> findExameByPaciente(@Param("id") int id);
+    @Query(value = "SELECT  p.nome, e.descricao, e.file_data " +
+            "FROM exames e, paciente p WHERE e.idexame =:id AND p.idpac=:e.idpac", nativeQuery = true)
+    List<ExameDTO> findExameByPaciente(@Param("id") int id);
 
 }

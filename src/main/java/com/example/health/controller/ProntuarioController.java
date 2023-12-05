@@ -24,17 +24,9 @@ public class ProntuarioController {
         this.prontuarioService = prontuarioService;
     }
 
-    @GetMapping("/")
-    public ResponseEntity<List<Prontuario>> listarProntuarios() {
-        List<Prontuario> prontuarios = prontuarioService.listarProntuarios();
-        return ResponseEntity.ok(prontuarios);
-    }
-
 
     @GetMapping("/{id}")
     public Prontuario prontuario(@PathVariable Long id){return this.prontuarioService.findById(id);}
-
-
 
     @PostMapping
     @Transactional

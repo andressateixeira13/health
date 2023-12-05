@@ -1,8 +1,7 @@
 package com.example.health.controller;
 
-import com.example.health.model.consulta.Consulta;
-import com.example.health.model.consulta.ConsultaDTO;
 import com.example.health.model.exame.Exame;
+import com.example.health.model.exame.ExameDTO;
 import com.example.health.service.ExameService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,17 +40,11 @@ public class ExameController {
         }
     }
 
-    @PostMapping("/")
-    public ResponseEntity<Exame> salvarExame(@RequestBody @Valid Exame exame,
-                                             UriComponentsBuilder uriBuilder) {
-        Exame savedExame = exameService.salvarExame(exame);
-
-        if (savedExame != null) {
-            URI uri = uriBuilder.path("/exames/{id}").buildAndExpand(savedExame.getIdexame()).toUri();
-            return ResponseEntity.created(uri).body(savedExame);
-        } else {
-            return ResponseEntity.badRequest().build();
-        }
+    @PostMapping
+    public ResponseEntity salvarExame(@RequestBody @Valid Exame exame, UriComponentsBuilder uriBuilder) {
+        this.exameService.salvarExame(exame);
+        URI uri = uriBuilder.path("/exames/{id}").buildAndExpand(exame.getIdexame()).toUri();
+        return ResponseEntity.created(uri).body(exame);
     }
 
     @PutMapping
@@ -68,7 +61,7 @@ public class ExameController {
     }
 
     @GetMapping("/exames/{id}")
-    public List<Exame> listarExames(@PathVariable int id){
+    public List<ExameDTO> listarExames(@PathVariable int id){
         return this.exameService.findByExamePorPaciente(id);
     }
 }

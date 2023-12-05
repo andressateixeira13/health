@@ -3,9 +3,6 @@ package com.example.health.service;
 import com.example.health.model.consulta.Consulta;
 import com.example.health.model.consulta.ConsultaDTO;
 import com.example.health.model.consulta.ConsultaRepository;
-import com.example.health.model.paciente.Paciente;
-import com.example.health.model.prontuario.Prontuario;
-import com.example.health.model.prontuario.ProntuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,8 +40,8 @@ public class ConsultaService {
         return this.repository.findById(id).get();
     }
 
-    public List<ConsultaDTO> findByConsultaPorPaciente(Long id){
-        return this.repository.findConsultaByPaciente(id);
+    public List<ConsultaDTO> findByConsultasPorPaciente(Long id){
+        return this.repository.findConsultasByPaciente(id);
     }
 
 

@@ -2,8 +2,6 @@ package com.example.health.controller;
 
 import com.example.health.model.consulta.Consulta;
 import com.example.health.model.consulta.ConsultaDTO;
-import com.example.health.model.paciente.Paciente;
-import com.example.health.model.prontuario.Prontuario;
 import com.example.health.service.ConsultaService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -63,7 +61,7 @@ public class ConsultaController {
 
     @GetMapping("/paciente/{id}")
     public List<ConsultaDTO> listarConsultasPorPaciente(@PathVariable Long id){
-        return this.service.findByConsultaPorPaciente(id);
+        return this.service.findByConsultasPorPaciente(id);
     }
 
 }

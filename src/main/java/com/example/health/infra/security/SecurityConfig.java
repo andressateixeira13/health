@@ -30,7 +30,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
                 .authorizeHttpRequests(auth->
                         auth.requestMatchers(HttpMethod.POST,"/login").permitAll()
                                 .requestMatchers(HttpMethod.POST,"/usuario").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/paciente").hasAnyAuthority("ROLE_MEDICO")
+                                .requestMatchers(HttpMethod.POST, "/paciente").hasAnyAuthority("ROLE_PACIENTE","ROLE_MEDICO")
                                 .requestMatchers(HttpMethod.GET,"/paciente").hasAnyAuthority("ROLE_PACIENTE","ROLE_MEDICO")
                                 .requestMatchers(HttpMethod.PUT,"/paciente").hasAnyAuthority("ROLE_PACIENTE")
                                 .requestMatchers(HttpMethod.POST,"/prontuario").hasAnyAuthority("ROLE_MEDICO","ROLE_PACIENTE")

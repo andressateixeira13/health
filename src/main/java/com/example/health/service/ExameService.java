@@ -3,6 +3,7 @@ package com.example.health.service;
 import com.example.health.model.consulta.Consulta;
 import com.example.health.model.consulta.ConsultaDTO;
 import com.example.health.model.exame.Exame;
+import com.example.health.model.exame.ExameDTO;
 import com.example.health.model.exame.ExameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,7 +42,7 @@ public class ExameService {
         exameRepository.deleteById(id);
     }
 
-    public List<Exame> findByExamePorPaciente(int id){
+    public List<ExameDTO> findByExamePorPaciente(int id){
         return this.exameRepository.findExameByPaciente(id);
     }
 }

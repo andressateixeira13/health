@@ -12,8 +12,7 @@ public interface MedicoRepository extends JpaRepository<Medico, Long> {
 
     public Optional<Medico> findById(Long id);
 
-    /*melhorar @Query*/
-    @Query(value = "SELECT m.id as idmed, m.nome as nome, m.especialidade as especialidade, m.crm as crm," +
+    @Query(value = "SELECT m.nome, m.especialidade, m.crm," +
             " FROM medico m WHERE m.especialidade =:especialidade", nativeQuery = true)
             List<Medico> findByEspecialidade(String especialidade);
 }

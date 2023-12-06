@@ -8,19 +8,19 @@ services:
     ports:
       - "8090:8080"
     depends_on:
-      PostgresSQL:
+      postgres:
         condition: service_healthy
     restart: on-failure
     networks:
       - rede
     environment:
-        - SPRING_DATASOURCE_URL=jdbc:postgresSQL://PostgresSQL:5434/projeto
-        - SPRING_DATASOURCE_USERNAME=postgres
-        - SPRING_DATASOURCE_PASSWORD=1234
-  PostgresSQL:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/projeto
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=1234
+  postgres:
     image: postgres
     ports:
-      - "5434:5432"
+      - "5433:5432"
     environment:
       - POSTGRES_PASSWORD=1234
       - POSTGRES_USER=postgres
@@ -34,9 +34,22 @@ services:
       - rede
     volumes:
       - pg-data:/docker-entrypoint-initdb.d
-
-volumes:
-  pg-data:
+  flyway:
+    container_name: my-flyway
+    environment:
+      - FLYWAY_USER=postgres
+      - FLYWAY_PASSWORD=1234
+      - FLYWAY_URL=jdbc:postgresql://postgres:5432/projeto
+      - FLYWAY_SCHEMAS=flyway
+      - FLYWAY_GROUP=true
+    image: flyway/flyway:latest
+    command: -locations=filesystem:/flyway/sql -connectRetries=60 migrate
+    volumes:
+      - $PWD/sql_versions:/flyway/sql
+    depends_on:
+      - postgres
 networks:
   rede:
     driver: bridge
+volumes:
+  pg-data:

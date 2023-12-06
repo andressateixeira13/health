@@ -1,4 +1,5 @@
 FROM openjdk:17
-ADD target/Health.jar Health.jar
-ENTRYPOINT ["java", "-jar","Health.jar"]
+ADD target/health.jar health.jar
+
+ENTRYPOINT ["java", "-jar","health.jar"]
 EXPOSE 8080

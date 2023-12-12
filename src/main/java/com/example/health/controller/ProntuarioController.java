@@ -1,8 +1,10 @@
 package com.example.health.controller;
 
+import com.example.health.model.cirurgia.CirurgiaDTO;
 import com.example.health.model.consulta.Consulta;
 import com.example.health.model.paciente.Paciente;
 import com.example.health.model.prontuario.Prontuario;
+import com.example.health.model.prontuario.ProntuarioDTO;
 import com.example.health.service.ProntuarioService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -33,7 +35,6 @@ public class ProntuarioController {
     public ResponseEntity salvarProntuario(@RequestBody @Valid Prontuario prontuario, UriComponentsBuilder uriBuilder) {
         this.prontuarioService.salvarProntuario(prontuario);
 
-
         URI uri = uriBuilder.path("/prontuario/{id}").buildAndExpand(prontuario.getIdpront()).toUri();
         return ResponseEntity.created(uri).body(prontuario);
     }
@@ -49,5 +50,10 @@ public class ProntuarioController {
     public ResponseEntity<Void> excluirProntuario(@PathVariable Long id) {
         prontuarioService.excluirProntuario(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/paciente/{id}")
+    public ProntuarioDTO listarCirurgiasPorPaciente(@PathVariable Long id){
+        return this.prontuarioService.findByProntuarioPorPaciente(id);
     }
 }

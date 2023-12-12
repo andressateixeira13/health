@@ -14,7 +14,7 @@ public class AutenticacaoService implements UserDetailsService {
     public AutenticacaoService(UsuarioRepository repository){
         this.repository = repository;
     }
-    //Método destiando a criação de um UserDetail que será inserido no contexto o Spring
+    //Método destinado a criação de um UserDetail que será inserido no contexto o Spring
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         Usuario usuario = this.repository.findByLogin(login);

@@ -1,5 +1,6 @@
 package com.example.health.model.prontuario;
 
+import com.example.health.model.cirurgia.CirurgiaDTO;
 import com.example.health.model.prontuario.Prontuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -15,4 +16,7 @@ public interface ProntuarioRepository extends JpaRepository<Prontuario, Long> {
 
     public Optional<Prontuario>findById(Long id);
 
+    @Query(value = "SELECT  p.nome as nomepac, m.nome as nomemed, po.limitacoes, po.alergias, p.datanasc, p.genero" +
+            " FROM prontuario po, paciente p, medicos m WHERE po.idpront =:id AND p.idpac=po.idpac AND m.idmed = po.idmed", nativeQuery = true)
+    ProntuarioDTO findProntuarioByPaciente(@Param("id") Long id);
 }
